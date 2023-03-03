@@ -2,7 +2,7 @@ import { Box, Grid, TextField, Typography, Button } from "@material-ui/core";
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { message } from "antd";
 import { useDispatch } from "react-redux";
 import { showLoading, hideLoading } from "../Redux/features/alertSlice";
@@ -115,8 +115,8 @@ const Login = () => {
                       display: "inline",
                       fontSize: "20px",
                     }}
-                  >
-                    Sign up now
+                  ><Link to="/register">
+                    Sign up now</Link>
                   </Typography>
                 </Typography>
               </Box>
