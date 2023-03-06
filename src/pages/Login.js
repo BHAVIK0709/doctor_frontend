@@ -6,6 +6,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { message } from "antd";
 import { useDispatch } from "react-redux";
 import { showLoading, hideLoading } from "../Redux/features/alertSlice";
+import { setUser } from "../Redux/features/userSlice";
 
 const useStyles = makeStyles((theme) => ({
   main: {
@@ -47,12 +48,14 @@ const Login = () => {
       .then((resp) => {
         console.log(resp.data);
         dispatch(hideLoading())
+        dispatch(setUser(resp.data))
         localStorage.setItem("jwt", resp.data.jwt);
         message.success("login successful");
         navigate("/");
       })
       .catch((err) => {
         console.log(err);
+        dispatch(hideLoading())
         message.error("incorrect password or email!");
       });
   };

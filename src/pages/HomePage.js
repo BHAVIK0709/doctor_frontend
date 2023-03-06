@@ -6,7 +6,7 @@ const HomePage = () => {
 
     const getUserData = async( ) =>{
         try {
-          const res = await axios.post("http://localhost:4010/getUserData", {},{
+          const res = await axios.get("http://localhost:4010/getUserData", {},{
             headers:{
               Authorization:"Bearer" + localStorage.getItem("jwt"),
             }
@@ -15,7 +15,7 @@ const HomePage = () => {
           })
             
         } catch (error) {
-            console.log(error)
+            // console.log(error)
             
         }
     }

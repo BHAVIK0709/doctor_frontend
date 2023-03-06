@@ -3,6 +3,10 @@ import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
+import { message } from "antd";
+import { useDispatch } from "react-redux";
+import { hideLoading, showLoading } from "../Redux/features/alertSlice";
+
 
 const useStyles = makeStyles((theme) => ({
   main: {
@@ -43,7 +47,10 @@ const useStyles = makeStyles((theme) => ({
 function Register() {
   const classes = useStyles();
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
   const submitHandler = () => {
+    dispatch(showLoading())
     let request = {
       name: document.getElementById("Fullname").value,
       email: document.getElementById("email").value,
@@ -53,10 +60,14 @@ function Register() {
       .post("http://localhost:4010/signup", request)
       .then((resp) => {
         console.log(resp);
+        dispatch(hideLoading())
+        message.success("Register successful");
         navigate("/login");
+
       })
       .catch((err) => {
         console.log(err);
+        dispatch(hideLoading())
       });
   };
 
