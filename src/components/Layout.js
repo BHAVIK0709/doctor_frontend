@@ -9,6 +9,8 @@ import "../styles/Layout.css";
 function Layout({ children }) {
   const location = useLocation();
   const  {allUsers} = useSelector((state)=>state.userReducers) 
+  const  {user} = useSelector((state)=>state.userReducers) 
+
 
   const SidebarMenu = allUsers ?.isAdmin ? adminMenu :userMenu
 
@@ -39,7 +41,7 @@ function Layout({ children }) {
           <div className="header">
           <i className="fa-sharp fa-solid fa-bell"></i>
           <Link to="/profile">
-            {allUsers[0]?.name}
+            {user?.name}
             </Link>
           </div>
           <div className="body">{children}</div>
