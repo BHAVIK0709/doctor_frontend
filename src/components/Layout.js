@@ -8,18 +8,18 @@ import "../styles/Layout.css";
 
 function Layout({ children }) {
   const location = useLocation();
-  const { user } = useSelector(state=>state.user.user) 
+  const  {allUsers} = useSelector((state)=>state.userReducers) 
 
-  const SidebarMenu = user?.isAdmin ? adminMenu :userMenu
+  const SidebarMenu = allUsers ?.isAdmin ? adminMenu :userMenu
 
-  console.log(user)
+  console.log(allUsers)
   return (
     <div className="main">
       <div className="layout">
         <div className="sidebar">
           <div className="logo">
             <h6>DOC APP</h6>
-            <hr />
+            <hr/>
           </div>
           <div className="menu">
             {SidebarMenu.map((menu) => {
@@ -38,7 +38,9 @@ function Layout({ children }) {
         <div className="content">
           <div className="header">
           <i className="fa-sharp fa-solid fa-bell"></i>
-          <Link to="/profile">{user?.email}</Link>
+          <Link to="/profile">
+            {allUsers[0]?.name}
+            </Link>
           </div>
           <div className="body">{children}</div>
         </div>

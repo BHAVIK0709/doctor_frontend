@@ -1,4 +1,4 @@
-import { Route, BrowserRouter, Routes } from "react-router-dom";
+import { Route,Routes } from "react-router-dom";
 import "./App.css";
 import HomePage from "./pages/HomePage";
 import Login from "./pages/Login";
@@ -9,10 +9,10 @@ import ProtectRoute from "./components/ProtectRoute";
 import PublicRoute from "./components/PublicRoute";
 
 function App() {
-  const { loading } = useSelector((state) => state.alerts);
+ const {loading} =  useSelector((state)=>state.alertReducer)
+ console.log(loading)
   return (
     <>
-      <BrowserRouter>
         {loading ? (
           <Spinner />
         ) : (
@@ -43,7 +43,7 @@ function App() {
             />
           </Routes>
         )}
-      </BrowserRouter>
+     
     </>
   );
 }

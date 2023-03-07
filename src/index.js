@@ -5,14 +5,48 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { Provider } from "react-redux";
-import { store } from "./Redux/store";
-
+import { BrowserRouter } from "react-router-dom";
+import {
+  persistStore,
+  persistReducer,
+  FLUSH,
+  REHYDRATE,
+  PAUSE,
+  PERSIST,
+  PURGE,
+  REGISTER,
+} from "redux-persist";
+import { PersistGate } from "redux-persist/integration/react";
+import storage from "redux-persist/lib/storage";
+import { configureStore } from "@reduxjs/toolkit";
+import RootReducers from "./Redux/features/rooteReducer";
+import logger from "redux-logger";
 const root = ReactDOM.createRoot(document.getElementById("root"));
+// {
+//   console.log(store.getState().persistedReducer.userReducer.allUsers);
+// }
+
+const persistConfig = {
+  key: "root",
+  storage,
+};
+const persistedReducer = persistReducer(persistConfig, RootReducers);
+const store = configureStore({ reducer: persistedReducer, middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: {
+        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+      },
+    }).concat(logger), });
+let persistor = persistStore(store);
 root.render(
   <Provider store={store}>
-    <React.StrictMode>
-      <App />
-    </React.StrictMode>
+    <PersistGate persistor={persistor}>
+      <React.StrictMode>
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
+      </React.StrictMode>
+    </PersistGate>
   </Provider>
 );
 

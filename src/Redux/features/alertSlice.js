@@ -1,15 +1,15 @@
 import { createSlice } from '@reduxjs/toolkit'
-
+ const initialState={
+  loading: false,
+}
 export const alertSlice = createSlice({
   name: 'alerts',
-  initialState:{
-    loading: false,
-  },
+  initialState,
   reducers: {
-    showLoading:(state) =>{
+    showLoading:(state,action) =>{
         state.loading =true;
     },
-    hideLoading :(state) => {
+    hideLoading :(state,action) => {
         state.loading =false;
     }
   },
