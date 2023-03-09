@@ -56,3 +56,21 @@ padding: 10px;
 .active a, .active i{
    color: rgb(8, 8, 8);
 }
+.header-content{
+    display: flex;
+    align-items: center;
+    height: 100px;
+    justify-content: flex-end;
+    margin: 0 15px;
+}
+.header-content i{
+   margin-right: 20px;
+   font-size: 1.2rem;
+}
+.header-content a{
+    text-decoration: none;
+    font-size: 1.2rem;
+    margin: 0 10px;
+    color: aqua;
+    text-transform: uppercase;
+}

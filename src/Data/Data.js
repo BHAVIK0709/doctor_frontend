@@ -11,7 +11,7 @@ export const userMenu = [
   },
   {
     name: "Apply Doctor",
-    path: "/applu-doctor",
+    path: "/apply-doctor",
     icon:"fa-sharp fa-solid fa-user-doctor"
   },
   {
@@ -19,11 +19,11 @@ export const userMenu = [
     path: "/profile",
     icon: "fa-sharp fa-solid fa-user"
   },
-  {
-    name: "Logout",
-    path: "/logout",
-    icon: "fa-sharp fa-solid fa-right-from-bracket"
-  },
+  // {
+  //   name: "Logout",
+  //   path: "/logout",
+  //   icon: "fa-sharp fa-solid fa-right-from-bracket"
+  // },
 ];
 export const SidebarMenu = [
   {
@@ -33,12 +33,12 @@ export const SidebarMenu = [
   },
   {
     name: "Appointments",
-    path: "/appointments",
+    path: "/appointments",  
     icon: "fa-sharp fa-solid fa-bars",
   },
   {
     name: "Apply Doctor",
-    path: "/applu-doctor",
+    path: "/apply-doctor",
     icon:"fa-sharp fa-solid fa-user-doctor"
   },
   {
@@ -74,9 +74,9 @@ export const adminMenu = [
     path: "/profile",
     icon: "fa-sharp fa-solid fa-user"
   },
-  {
-    name: "Logout",
-    path: "/logout",
-    icon: "fa-sharp fa-solid fa-right-from-bracket"
-  },
+  // {
+  //   name: "Logout",
+  //   path: "/logout",
+  //   icon: "fa-sharp fa-solid fa-right-from-bracket"
+  // },
 ];
