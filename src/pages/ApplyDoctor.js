@@ -8,20 +8,21 @@ import { hideLoading, showLoading } from "../Redux/features/alertSlice";
 
 function ApplyDoctor() {
 
-    const {user} =useSelector(state => state.userReducer)
+    const {user} =useSelector(state => state.userReducers)
 const dispatch =useDispatch();
 const navigate =useNavigate();
 
-  const submitData = (values) => {
+  const submitData = async(values) => {
     console.log(values);
     try {
         dispatch(showLoading())
-        const res =axios.post('http://localhost:4010/apply-doctor',{...values,userId:user._id},
+        const res = await axios.post('http://localhost:4010/apply-doctor',{...values,userId:user._id},
         {headers:
             {
                 Authorization:`Bearer ${localStorage.getItem('jwt')}`
             }
         })
+        console.log('jjj',res)
         dispatch(hideLoading())
         if(res.data.success){
             message.success(res.data.success)
@@ -31,7 +32,8 @@ const navigate =useNavigate();
         }
     } catch (error) {
         console.log(error)
-        message.error('something went wrong')
+        dispatch(hideLoading())
+        message.error('something went wrong and error')
     }
   };
   return (
@@ -53,7 +55,7 @@ const navigate =useNavigate();
           <Col xs={24} md={24} lg={8}>
             <Form.Item
               label="Last Name"
-              name="lasttname"
+              name="lastname"
               required
               rules={[{ required: true }]}
             >

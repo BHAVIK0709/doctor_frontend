@@ -10,7 +10,7 @@ const dispatch = useDispatch()
         try {
            await axios.get("http://localhost:4010/getUsers", {
             headers:{
-              Authorization:"Bearer" + localStorage.getItem("jwt"),
+              Authorization:` Bearer ${localStorage.getItem("jwt")}`,
             }
           }).then((resp)=>{
             console.log(resp.data)

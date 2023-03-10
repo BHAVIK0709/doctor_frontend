@@ -12,6 +12,7 @@ const initialState = {
     },
     setAllUsers: (state, action) => {
       state.allUsers = action.payload;
+      
     },
   },
 });
