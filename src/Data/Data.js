@@ -43,7 +43,7 @@ export const SidebarMenu = [
   },
   {
     name: "Profile",
-    path: "/profile",
+    path: "/doctor/profile",
     icon: "fa-sharp fa-solid fa-user"
   },
   {
