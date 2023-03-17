@@ -5,6 +5,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import Layout from "../components/Layout";
 import { hideLoading, showLoading } from "../Redux/features/alertSlice";
+import moment from 'moment';
+
 
 function ApplyDoctor() {
 
@@ -16,7 +18,10 @@ const navigate =useNavigate();
     console.log(values);
     try {
         dispatch(showLoading())
-        const res = await axios.post('http://localhost:4010/apply-doctor',{...values,userId:user._id},
+        const res = await axios.post('http://localhost:4010/apply-doctor',{...values,userId:user._id, timings: [
+          moment(values.timings[0]).format("HH:mm"),
+          moment(values.timings[1]).format("HH:mm"),
+        ],},
         {headers:
             {
                 Authorization:`Bearer ${localStorage.getItem('jwt')}`
@@ -101,7 +106,6 @@ const navigate =useNavigate();
             <Input type="text" placeholder="your address " />
           </Form.Item>
         </Row>
-
         <h4 className="text-dark"> Professional Details</h4>
         <Row gutter={20}>
           <Col xs={24} md={24} lg={8}>

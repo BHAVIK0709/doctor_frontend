@@ -5,7 +5,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import Layout from "../../components/Layout";
 import { Button, Col, Form, Input, message, Row, TimePicker } from "antd";
 import { hideLoading, showLoading } from "../../Redux/features/alertSlice";
-import moment from "moment";
+import moment from 'moment';
 function Profile() {
   const { user } = useSelector((state) => state.userReducers);
 
@@ -24,8 +24,10 @@ function Profile() {
           ...values,
           userId: user._id,
           timings: [
-            moment(values.timings[0].format('HH:mm')),
-            moment(values.timings[1].format('HH:mm')),
+            // moment(values.timings[0]).format("HH:mm"),
+            // moment(values.timings[1]).format("HH:mm"),
+            moment(values.timings[0]).format("HH:mm"),
+            moment(values.timings[1]).format("HH:mm"),
           ],
         },
         {
@@ -69,13 +71,14 @@ function Profile() {
       console.log(error);
     }
   };
+
   useEffect(() => {
     getDocInfo();
   }, []);
 
   return (
     <Layout>
-      <h1>MAnage Profile</h1>
+      <h1>Manage Profile</h1>
       {doctor && (
         <Form
           layout="vertical"

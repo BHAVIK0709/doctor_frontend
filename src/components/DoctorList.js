@@ -26,7 +26,7 @@ function DoctorList({ doctor }) {
             {doctor.feesPerCunsultation}
           </p>
           <p>
-            <b>timings :</b> {doctor.timings}
+            <b>timings :</b> {doctor.timings[0] + " to " + doctor.timings[1]}
           </p>
         </div>
       </div>
