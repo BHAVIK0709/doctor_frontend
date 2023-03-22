@@ -11,6 +11,7 @@ function Notification() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { user } = useSelector((state) => state.userReducers);
+  console.log(user);
 
   const handleMarkAllRead = async () => {
     try {
@@ -73,16 +74,16 @@ function Notification() {
               Mark all as read
             </h4>
           </div>
-          {user?.notification?.map((value) => (
+          {user && user.notification.length >0 ? user.notification.map((value) => (
             <div className="card" style={{ cursor: "pointer" }}>
               <div
                 className="card-text"
                 onClick={() => navigate(value.onClickPath)}
               >
-                {value.message}
+                  {value && value.type }
               </div>
             </div>
-          ))}
+          )): "No One Notification is here"}
         </Tabs.TabPane>
         <Tabs.TabPane tab="Read" key={1}>
           <div className="d-flex justify-content-end">
@@ -100,7 +101,7 @@ function Notification() {
                 className="card-text"
                 onClick={() => navigate(seen.onClickPath)}
               >
-                {seen.message}
+                {seen.type}
               </div>
             </div>
           ))}
