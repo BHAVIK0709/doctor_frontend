@@ -77,6 +77,10 @@ function BookingPage() {
   const handleBooking = async (value) => {
     console.log(date, time);
     try {
+      setIsAvailable(true);
+      if(!date && !time){
+        return alert("Date and Time is required")
+      }
       dispatch(showLoading());
       const res = await axios.post(
         "http://localhost:4010/book-apponitment",
@@ -139,7 +143,7 @@ function BookingPage() {
               >
                 Check Availibility
               </button>
-              {isAvailable && (
+              {!isAvailable && (
                 <button className="btn btn-dark mt-2" onClick={handleBooking}>
                   Book now
                 </button>
